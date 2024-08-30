@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@500;700&family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap');
+@font-face {
+    font-family: 'Montserrat Alt 1';
+    src: url('./assets/fonts/MontserratAlt1-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body{
+    background-color: #09040f;
+    overflow-x: hidden;
+}
+
+.text-gradient-purple {
+  background: radial-gradient(
+    64.18% 64.18% at 71.16% 35.69%,
+    #f2e6ff 0.89%, 
+    #d3b4ff 17.23%,  
+    #b98eff 42.04%,  
+    #a26cff 55.12%, 
+    #8D5FE3 71.54%, 
+    #6600cc 100%   
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bg-purple-gradient {
+  background: linear-gradient(
+    157.81deg,
+    #f2e6ff -43.27%,
+    #d3b4ff -21.24%,
+    #b98eff 12.19%, 
+    #a26cff 29.82%, 
+    #8D5FE3 51.94%, 
+    #6600cc 90.29% 
+  );
+}
+
+
+
+.text-gradient {
+  background: linear-gradient(to right, #FFFFFF 80%, #bb9fee 20%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-md {
+  background: linear-gradient(to right, #FFFFFF 60%, #C6A6D6 80%, #8D5FE3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.purple__gradient {
+  background: linear-gradient(180deg, rgba(188, 165, 255, 0) 0%, #8D5FE3 100%);
+  filter: blur(123px);
+}
+
+.white__gradient {
+  background: linear-gradient(180deg, rgba(188, 165, 255, 0) 0%, #ffffff 100%);
+  filter: blur(123px);
+}
+
+.purple__gradient-buttons {
+  background: linear-gradient(180deg, rgba(188, 165, 255, 0) 0%, #8D5FE3 100%);
+  filter: blur(123px);
+}
