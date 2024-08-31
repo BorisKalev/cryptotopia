@@ -4,19 +4,19 @@ import { FaTwitter, FaDiscord, FaFacebook } from "react-icons/fa";
 const Footer = () => {
   return (
     <>
-      <div className="flex justify-between items-center mt-[10rem] max-w-6xl  m-auto font-mix text-white">
-        <div className="flex flex-col w-2/5 mb-12">
+      <div className="flex justify-between items-center mt-[10rem] max-w-6xl  m-auto font-mix text-white md-max:flex-col">
+        <div className="flex flex-col w-2/5 mb-12 md-max:w-full">
           <img
             src={logo}
             alt="logo cryptotopia"
             className="w-[300px] object-contain"
           />
-          <p className="text-white opacity-75 w-1/2 ml-8">
-            A new way to buy/sell cryptocurrencies, reliable and secure.
+          <p className="text-white opacity-75 w-3/5 ml-8">
+            A new way to buy & sell cryptocurrencies, reliable and secure.
           </p>
         </div>
         {/* Links columns */}
-        <div className="flex flex-wrap justify-between w-3/5">
+        <div className="flex flex-wrap justify-between w-3/5 md-max:w-full md-max:px-8">
           {/* First Column */}
           <div className="flex flex-col w-1/3 mt-10">
             <h1 className="text-white mb-4">Useful Links</h1>
@@ -45,7 +45,7 @@ const Footer = () => {
           </div>
 
           {/* Second Column */}
-          <div className="flex flex-col w-1/3 mt-10">
+          <div className="flex flex-col md-max:text-center w-1/3 mt-10">
             <h1 className="text-white mb-4">Community</h1>
             <ul className="flex-grow opacity-60 flex flex-col justify-start">
               <li className="mb-2">
@@ -77,7 +77,7 @@ const Footer = () => {
           </div>
 
           {/* Third Column */}
-          <div className="flex flex-col w-1/3 mt-10">
+          <div className="flex flex-col w-1/3 mt-10 md-max:text-end">
             <h1 className="text-white mb-4">Partner</h1>
             <ul className="flex-grow opacity-60 flex flex-col justify-start">
               <li className="mb-2">
@@ -95,11 +95,13 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="h-[1px] w-full max-w-6xl m-auto bg-purple-300 opacity-75 mt-2" />
+      <div className="h-[1px] max-w-6xl m-auto bg-purple-300 opacity-75 mt-2 px-7" />
 
-      <div className="flex justify-between max-w-6xl m-auto text-white mt-5 mb-10 font-mix">
-        <h1 className="ml-8">2024 Cryptopia©. All Rights Reserved</h1>
-        <div className="flex text-xl gap-5 mr-8">
+      <div className="flex justify-between max-w-6xl m-auto text-white mt-7 mb-10 font-mix md-max:flex-col md-max:justify-normal items-center">
+        <h1 className="ml-8 md-max:ml-0">
+          2024 Cryptopia©. All Rights Reserved
+        </h1>
+        <div className="flex text-xl gap-5 mr-8 md-max:mr-0 md-max:mt-5">
           <FaTwitter className="hover:text-purple-400 cursor-pointer" />
           <FaDiscord className="hover:text-purple-400 cursor-pointer" />
           <FaFacebook className="hover:text-purple-400 cursor-pointer" />

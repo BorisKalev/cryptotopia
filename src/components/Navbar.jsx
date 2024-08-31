@@ -5,7 +5,7 @@ const Navbar = () => {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   return (
     <div className="flex items-center justify-between m-auto max-w-6xl font-mix px-7 sm-max:px-10">
-      <div className="flex items-center space-x-4 text-white text-center  lg-max:flex-col md-max:hidden">
+      <div className="flex items-center space-x-4 text-white text-center lg-max:space-x-0  lg-max:flex-col md-max:hidden">
         <p>Home</p>
         <p className="lg-max:mt-3">Market</p>
       </div>

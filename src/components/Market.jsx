@@ -41,7 +41,7 @@ const Market = () => {
       <div className="absolute z-[0] w-[60%] h-[60%] -right-[50%] rounded-full purple__gradient top-[50rem] lg-max:top-[90rem]" />
       <div className="absolute z-[0] w-[60%] h-[60%] -left-[50%] rounded-full white__gradient top-[50rem] lg-max:top-[90rem]" />
 
-      <div className="max-w-6xl mt-[4rem] m-auto relative  sm-max:px-10">
+      <div className="max-w-6xl mt-[4rem] m-auto relative  sm-max:px-10 px-7">
         {/* Header of the Market */}
         <div className="grid grid-cols-4 gap-4 text-[#8D5FE3] mt-5 text-md lg-max:grid-cols-3 px-7">
           <p className="">Coin</p>
