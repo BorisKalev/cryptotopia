@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-
+import { useNavigate } from "react-router-dom";
 const Market = () => {
   const [coins, setCoins] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(3);
+
+  const navigate = useNavigate();
 
   function addCommasToNumber(number) {
     let numString = number.toString();
@@ -32,6 +34,10 @@ const Market = () => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
     }
+  };
+
+  const handleCoinClick = (coinName) => {
+    navigate(`/coin/${coinName}`);
   };
 
   return (
@@ -63,7 +69,10 @@ const Market = () => {
         {/* Coin Listings */}
         {coins.map((coin) => (
           <div key={coin.id} className="mt-10">
-            <div className="grid grid-cols-4 gap-4 items-center text-white text-xl font-mix lg-max:grid-cols-3 px-7">
+            <div
+              className="grid grid-cols-4 gap-4 items-center text-white text-xl font-mix lg-max:grid-cols-3 px-7 cursor-pointer"
+              onClick={() => handleCoinClick(coin.name)}
+            >
               <p className="flex items-center md-max:flex-col md-max:items-start">
                 <img
                   src={coin.image}
