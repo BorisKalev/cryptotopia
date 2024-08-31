@@ -3,7 +3,7 @@ import card from "../assets/card2.png";
 const CardOptions = () => {
   return (
     <div className="mt-[10rem] max-w-6xl  m-auto flex px-7 items-center justify-between font-mix lg-max:flex-col">
-      <div className="text-white flex flex-col w-2/5 lg-max:w-4/5 ">
+      <div className="text-white flex flex-col w-2/5 lg-max:w-full ">
         <h1 className="text-4xl font-bold">
           Connect your card in a few easy steps
         </h1>

@@ -29,7 +29,7 @@ const Navbar = () => {
       </div>
 
       <div
-        className={`fixed top-0 right-0 h-full w-1/4 sm-max:w-2/4 bg-[#8D5FE3] p-5 text-white transform transition-transform duration-300 ease-in-out z-50 ${
+        className={`absolute top-[5rem] -right-2 h-[300px] w-1/4 sm-max:w-2/5 bg-gradient-brown rounded-tl-lg rounded-bl-lg p-5 text-white transform transition-transform duration-500 ease-in-out z-50 ${
           menuIsOpen ? "translate-x-0" : "translate-x-full"
         } md:hidden`}
       >

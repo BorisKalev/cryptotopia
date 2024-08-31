@@ -95,7 +95,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="h-[1px] max-w-6xl m-auto bg-purple-300 opacity-75 mt-2 px-7" />
+      <div className="h-[1px] max-w-6xl m-auto bg-purple-300 opacity-75 mt-5 px-7" />
 
       <div className="flex justify-between max-w-6xl m-auto text-white mt-7 mb-10 font-mix md-max:flex-col md-max:justify-normal items-center">
         <h1 className="ml-8 md-max:ml-0">
