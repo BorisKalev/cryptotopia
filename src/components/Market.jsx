@@ -2,20 +2,21 @@ import React, { useState, useEffect } from "react";
 
 const Market = () => {
   const [coins, setCoins] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(3);
 
   function addCommasToNumber(number) {
     let numString = number.toString();
-
     numString = numString.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-
     return numString;
   }
 
+  // Fetch coins whenever the page changes
   useEffect(() => {
     const fetchCoins = async () => {
       try {
         const response = await fetch(
-          "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=5&page=1&sparkline=false"
+          `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=5&page=${currentPage}&sparkline=false`
         );
         const data = await response.json();
         setCoins(data);
@@ -25,9 +26,17 @@ const Market = () => {
     };
 
     fetchCoins();
-  }, []);
+  }, [currentPage]);
+
+  const handlePageChange = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
+
   return (
     <>
+      {/* Header Section */}
       <div className="flex flex-col items-center mt-[10rem]">
         <div className="border border-[#432f68] rounded-full text-white text-center">
           <p className="p-4 font-sans opacity-90">Over 200 coins</p>
@@ -41,8 +50,9 @@ const Market = () => {
       <div className="absolute z-[0] w-[60%] h-[60%] -right-[50%] rounded-full purple__gradient top-[50rem] lg-max:top-[90rem]" />
       <div className="absolute z-[0] w-[60%] h-[60%] -left-[50%] rounded-full white__gradient top-[50rem] lg-max:top-[90rem]" />
 
-      <div className="max-w-6xl mt-[4rem] m-auto relative  sm-max:px-10 px-7">
-        {/* Header of the Market */}
+      {/* Market Section */}
+      <div className="max-w-6xl mt-[4rem] m-auto relative sm-max:px-10 px-7">
+        {/* Market Table Header */}
         <div className="grid grid-cols-4 gap-4 text-[#8D5FE3] mt-5 text-md lg-max:grid-cols-3 px-7">
           <p className="">Coin</p>
           <p className="text-center">Price</p>
@@ -50,13 +60,10 @@ const Market = () => {
           <p className="text-right lg-max:hidden">Market Cap</p>
         </div>
 
-        {/* Display coins */}
+        {/* Coin Listings */}
         {coins.map((coin) => (
-          <>
-            <div
-              key={coin.id}
-              className="grid grid-cols-4 gap-4 items-center text-white mt-10 text-xl font-mix lg-max:grid-cols-3 px-7"
-            >
+          <div key={coin.id} className="mt-10">
+            <div className="grid grid-cols-4 gap-4 items-center text-white text-xl font-mix lg-max:grid-cols-3 px-7">
               <p className="flex items-center md-max:flex-col md-max:items-start">
                 <img
                   src={coin.image}
@@ -80,8 +87,45 @@ const Market = () => {
               </p>
             </div>
             <div className="w-full h-[5px] bg-gradient-white-purple mt-5" />
-          </>
+          </div>
         ))}
+
+        {/* Pagination Controls */}
+        <div className="flex justify-center mt-10 space-x-4">
+          <button
+            onClick={() => handlePageChange(currentPage - 1)}
+            className={`text-white px-4 py-2 rounded ${
+              currentPage === 1
+                ? "bg-gray-500 cursor-not-allowed"
+                : "bg-[#8D5FE3]"
+            }`}
+            disabled={currentPage === 1}
+          >
+            Previous
+          </button>
+          {[...Array(totalPages).keys()].map((_, index) => (
+            <button
+              key={index + 1}
+              onClick={() => handlePageChange(index + 1)}
+              className={`text-white px-4 py-2 rounded ${
+                currentPage === index + 1 ? "bg-[#8D5FE3]" : "bg-gray-500"
+              }`}
+            >
+              {index + 1}
+            </button>
+          ))}
+          <button
+            onClick={() => handlePageChange(currentPage + 1)}
+            className={`text-white px-4 py-2 rounded ${
+              currentPage === totalPages
+                ? "bg-gray-500 cursor-not-allowed"
+                : "bg-[#8D5FE3]"
+            }`}
+            disabled={currentPage === totalPages}
+          >
+            Next
+          </button>
+        </div>
       </div>
     </>
   );
