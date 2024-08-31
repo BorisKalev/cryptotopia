@@ -36,8 +36,8 @@ const Market = () => {
     }
   };
 
-  const handleCoinClick = (coinName) => {
-    navigate(`/coin/${coinName}`);
+  const handleCoinClick = (coinId) => {
+    navigate(`/coin/${coinId}`);
   };
 
   return (
@@ -71,7 +71,7 @@ const Market = () => {
           <div key={coin.id} className="mt-10">
             <div
               className="grid grid-cols-4 gap-4 items-center text-white text-xl font-mix lg-max:grid-cols-3 px-7 cursor-pointer"
-              onClick={() => handleCoinClick(coin.name)}
+              onClick={() => handleCoinClick(coin.id)}
             >
               <p className="flex items-center md-max:flex-col md-max:items-start">
                 <img

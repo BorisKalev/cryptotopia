@@ -27,7 +27,7 @@ const App = () => {
             </>
           }
         />
-        <Route path="/coin/:coinName" element={<Coin />} />
+        <Route path="/coin/:coinId" element={<Coin />} />
       </Routes>
     </>
   );
