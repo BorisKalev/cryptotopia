@@ -27,17 +27,20 @@ const FeatureCard = ({ icon, title, content, index }) => (
 const Buisness = () => {
   return (
     <>
-      <div className="mt-[10rem] max-w-6xl m-auto flex items-center justify-between font-mix px-7 md-max:flex-col">
+      <div
+        className="mt-[10rem] max-w-6xl m-auto flex items-center justify-between font-mix px-7 md-max:flex-col"
+        id="aboutUs"
+      >
         {/* Left Column */}
         <div className="flex flex-col text-white w-2/5 md-max:w-full">
           <h1 className="text-4xl font-bold">
-            You do the business, we’ll handle the money.
+            Optimize Your Crypto Trading with Expert Solutions
           </h1>
 
           <p className="mt-10 opacity-75">
-            With the right credit card, you can improve your financial life by
-            building credit, earning rewards and saving money. But with hundreds
-            of credit cards on the market.
+            With the right tools, you can maximize your crypto gains, manage
+            your assets, and stay ahead in the market. Choose from a variety of
+            features to enhance your trading experience.
           </p>
 
           <button className="p-2 w-[150px] border border-[#8D5FE3] rounded-lg bg-purple-gradient mt-10">

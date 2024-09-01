@@ -8,8 +8,9 @@ const CardOptions = () => {
           Connect your card in a few easy steps
         </h1>
         <p className="mt-10 opacity-75">
-          No matter where you are from the world you can connect your card to
-          the blockchain and buy your favorite crypto coin.
+          Connect your card effortlessly, no matter where you are in the world.
+          Seamlessly integrate with the blockchain and begin purchasing your
+          favorite cryptocurrencies with just a few simple steps.
         </p>
 
         <button className="p-2 w-[150px] border border-[#8D5FE3] rounded-lg bg-purple-gradient mt-10">

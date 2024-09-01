@@ -3,15 +3,32 @@ import { RiMenu4Fill, RiCloseCircleFill } from "react-icons/ri";
 import logo from "../assets/logo.png";
 const Navbar = () => {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
+
+  const scrollToSection = (sectionId) => {
+    document.getElementById(sectionId).scrollIntoView({ behavior: "smooth" });
+    setMenuIsOpen(false);
+  };
   return (
     <div className="flex items-center justify-between m-auto max-w-6xl font-mix px-7 sm-max:px-10">
       <div className="flex items-center space-x-4 text-white text-center lg-max:space-x-0  lg-max:flex-col md-max:hidden">
-        <p>Home</p>
-        <p className="lg-max:mt-3">Market</p>
+        <p onClick={() => scrollToSection("home")} className="cursor-pointer">
+          Home
+        </p>
+        <p
+          className="lg-max:mt-3 cursor-pointer"
+          onClick={() => scrollToSection("market")}
+        >
+          Market
+        </p>
       </div>
       <img src={logo} alt="cryptopia" className="w-[450px]" />
       <div className="flex items-center text-center space-x-4 lg-max:flex-col md-max:hidden">
-        <p className="text-[#8D5FE3]">About us</p>
+        <p
+          className="text-[#8D5FE3] cursor-pointer"
+          onClick={() => scrollToSection("aboutUs")}
+        >
+          About us
+        </p>
         <button className="p-2 border border-[#8D5FE3] rounded-lg text-[#8D5FE3] lg-max:mt-3">
           Get in touch
         </button>
@@ -38,9 +55,21 @@ const Navbar = () => {
           onClick={() => setMenuIsOpen(false)}
         />
         <div className="flex flex-col space-y-4 text-center mt-10 z-100">
-          <p>Home</p>
-          <p>How Cryptopia Works</p>
-          <p>About us</p>
+          <p className="cursor-pointer" onClick={() => scrollToSection("home")}>
+            Home
+          </p>
+          <p
+            className="cursor-pointer"
+            onClick={() => scrollToSection("market")}
+          >
+            Market
+          </p>
+          <p
+            className="cursor-pointer"
+            onClick={() => scrollToSection("aboutUs")}
+          >
+            About us
+          </p>
           <button>Get in touch</button>
         </div>
       </div>

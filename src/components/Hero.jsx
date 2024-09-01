@@ -6,9 +6,12 @@ import { stats } from "../constants";
 const Hero = () => {
   return (
     <>
-      <div className="relative flex items-center m-auto max-w-6xl px-7 sm-max:px-10 lg-max:flex-col">
+      <div
+        className="relative flex items-center m-auto max-w-6xl px-7 sm-max:px-10 lg-max:flex-col "
+        id="home"
+      >
         <h1 className="text-white font-bold font-mix text-[2.7rem] w-2/4 tracking-wide mt-10 lg-max:w-full lg-max:text-center">
-          The best and most UI friendly crypto chart website in the world
+          Your Top Choice for Intuitive and Advanced Crypto Charting
         </h1>
         <img
           src={discoball}
@@ -20,8 +23,8 @@ const Hero = () => {
       <div className="m-auto max-w-6xl  sm-max:px-10 mt-[6rem] px-7">
         <div className="flex items-center text-white lg-max:justify-center">
           <p className="max-w-xs font-mono opacity-90 sm-max:text-sm">
-            A new generation of gaming and finance is arriving, where AI bots
-            compete and interact with each other.
+            Embrace the future of crypto with cutting-edge technology where
+            algorithms and data drive success.
           </p>
           <img
             src={fleche}
@@ -37,8 +40,8 @@ const Hero = () => {
             className="rotate-45 w-[200px] h-[100px] opacity-60"
           />
           <p className="max-w-xs opacity-60 font-mono lg:text-gradient sm-max:text-sm">
-            Altered State Machine is a platform layer using NFT's to create,
-            trade, train and utilise these AI's
+            Our platform leverages blockchain to innovate, trade, and optimize
+            digital assets in real-time.
           </p>
         </div>
       </div>

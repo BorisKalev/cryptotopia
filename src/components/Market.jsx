@@ -49,7 +49,7 @@ const Market = () => {
   return (
     <>
       {/* Header Section */}
-      <div className="flex flex-col items-center mt-[10rem]">
+      <div className="flex flex-col items-center mt-[10rem]" id="market">
         <div className="border border-[#432f68] rounded-full text-white text-center">
           <p className="p-4 font-sans opacity-90">Over 200 coins</p>
         </div>
