@@ -5,10 +5,12 @@ import { AreaChart, Card } from "@tremor/react";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 const Coin = () => {
-  const { coinId } = useParams();
+  const { coinId, coinName } = useParams();
   const [coin, setCoin] = useState(null);
   const [error, setError] = useState(null);
   const [chartData, setChartData] = useState([]);
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(0);
   const navigate = useNavigate();
   useEffect(() => {
     const fetchCoinData = async () => {
@@ -27,31 +29,37 @@ const Coin = () => {
 
     const fetchChartData = async () => {
       try {
+        // Fetch Bitcoin price data for the last 24 hours
         const response = await fetch(
-          `https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=1`
+          `https://api.coingecko.com/api/v3/coins/${coinName}/market_chart?vs_currency=usd&days=1`
         );
-        if (!response.ok) throw new Error("Failed to fetch chart data");
         const data = await response.json();
 
-        // Map data to format required for Tremor AreaChart
-        const formattedData = data.prices.map(([timestamp, price]) => ({
-          time: new Date(timestamp).toLocaleTimeString([], {
+        // Format the data for AreaChart
+        const formattedData = data.prices.map((price) => ({
+          time: new Date(price[0]).toLocaleTimeString([], {
             hour: "2-digit",
             minute: "2-digit",
           }),
-          price: price,
+          price: price[1],
         }));
 
+        // Find the min and max prices
+        const prices = data.prices.map((price) => price[1]);
+        const minPrice = Math.min(...prices) - 1000;
+        const maxPrice = Math.max(...prices) + 1000;
+
         setChartData(formattedData);
+        setMinPrice(minPrice);
+        setMaxPrice(maxPrice);
       } catch (error) {
-        setError(error.message);
         console.error("Error fetching chart data:", error);
       }
     };
 
     fetchCoinData();
     fetchChartData();
-  }, [coinId]);
+  }, [coinId, coinName]);
 
   if (error) {
     return <div>Error: {error}</div>;
@@ -75,6 +83,13 @@ const Coin = () => {
   const handleReturnClick = () => {
     navigate(`/`);
   };
+
+  function formatNumber(value) {
+    if (value >= 1e9) return `$${(value / 1e9).toFixed(2)}B`;
+    if (value >= 1e6) return `$${(value / 1e6).toFixed(2)}M`;
+    if (value >= 1e3) return `$${(value / 1e3).toFixed(2)}K`;
+    return `$${value.toFixed(2)}`;
+  }
 
   return (
     <>
@@ -141,20 +156,38 @@ const Coin = () => {
           </div>
         </div>
 
-        <div className="w-4/6 flex items-center justify-center ml-10">
-          <Card className="bg-purple-900 w-full h-[350px]">
+        <div className="w-4/6 flex items-center justify-center ml-10 mt-[10rem]">
+          <Card className="w-full h-[350px]">
             <AreaChart
-              className="mt-6 h-[250px]"
+              className="custom-chart"
               data={chartData}
               categories={["price"]}
-              dataKey="time"
-              colors={["blue"]}
+              index="time"
+              colors={["#9F7AEA"]}
               showLegend={false}
-              valueFormatter={(value) => `$${value.toFixed(2)}`}
+              valueFormatter={(value) => formatNumber(value)}
               title="Bitcoin Price - Last 24 Hours"
-              yAxisWidth={56} // Ensure yAxisWidth is numerical
+              yAxisWidth={70}
+              xAxisOptions={{
+                tickInterval: 5,
+                formatter: (value) => value,
+              }}
+              minValue={minPrice}
+              maxValue={maxPrice}
             />
           </Card>
+
+          <style jsx>{`
+            .custom-chart .recharts-cartesian-axis-tick tspan {
+              fill: white !important; /* Force the text for the tick labels to be white */
+            }
+
+            .custom-chart .recharts-cartesian-axis-line,
+            .custom-chart .recharts-cartesian-grid-horizontal line,
+            .custom-chart .recharts-cartesian-grid-vertical line {
+              stroke: white !important; /* Force the grid lines and axis lines to be white */
+            }
+          `}</style>
         </div>
       </div>
     </>
