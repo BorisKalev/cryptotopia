@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { ClipLoader } from "react-spinners";
 const Market = () => {
   const [coins, setCoins] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(3);
-
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   function addCommasToNumber(number) {
@@ -20,10 +22,14 @@ const Market = () => {
         const response = await fetch(
           `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=5&page=${currentPage}&sparkline=false`
         );
+        if (!response.ok) throw new Error("Failed to fetch coins");
         const data = await response.json();
         setCoins(data);
+        setLoading(false);
+        setError(null);
       } catch (error) {
-        console.error("Error fetching the coins:", error);
+        setError("The number of request has exceeded the amount available");
+        setLoading(true);
       }
     };
 
@@ -66,6 +72,23 @@ const Market = () => {
           <p className="text-right lg-max:hidden">Market Cap</p>
         </div>
 
+        {/* Loading and Error Handling */}
+        {loading && (
+          <div className="flex items-center justify-center min-h-[200px]">
+            <ClipLoader color="#8D5FE3" size={50} />
+          </div>
+        )}
+        {error && (
+          <div className="text-red-500 text-center min-h-[200px]">
+            <p>Error fetching coins: {error}</p>
+          </div>
+        )}
+        {coins.length === 0 && !loading && !error && (
+          <div className="text-white text-center min-h-[200px]">
+            <p>No coins available</p>
+          </div>
+        )}
+
         {/* Coin Listings */}
         {coins.map((coin) => (
           <div key={coin.id} className="mt-10">
@@ -100,41 +123,45 @@ const Market = () => {
         ))}
 
         {/* Pagination Controls */}
-        <div className="flex justify-center mt-10 space-x-4">
-          <button
-            onClick={() => handlePageChange(currentPage - 1)}
-            className={`text-white px-4 py-2 rounded ${
-              currentPage === 1
-                ? "bg-gray-500 cursor-not-allowed"
-                : "bg-[#8D5FE3]"
-            }`}
-            disabled={currentPage === 1}
-          >
-            Previous
-          </button>
-          {[...Array(totalPages).keys()].map((_, index) => (
+        {loading ? (
+          ""
+        ) : (
+          <div className="flex justify-center mt-10 space-x-4">
             <button
-              key={index + 1}
-              onClick={() => handlePageChange(index + 1)}
+              onClick={() => handlePageChange(currentPage - 1)}
               className={`text-white px-4 py-2 rounded ${
-                currentPage === index + 1 ? "bg-[#8D5FE3]" : "bg-gray-500"
+                currentPage === 1
+                  ? "bg-gray-500 cursor-not-allowed"
+                  : "bg-[#8D5FE3]"
               }`}
+              disabled={currentPage === 1}
             >
-              {index + 1}
+              Previous
             </button>
-          ))}
-          <button
-            onClick={() => handlePageChange(currentPage + 1)}
-            className={`text-white px-4 py-2 rounded ${
-              currentPage === totalPages
-                ? "bg-gray-500 cursor-not-allowed"
-                : "bg-[#8D5FE3]"
-            }`}
-            disabled={currentPage === totalPages}
-          >
-            Next
-          </button>
-        </div>
+            {[...Array(totalPages).keys()].map((_, index) => (
+              <button
+                key={index + 1}
+                onClick={() => handlePageChange(index + 1)}
+                className={`text-white px-4 py-2 rounded ${
+                  currentPage === index + 1 ? "bg-[#8D5FE3]" : "bg-gray-500"
+                }`}
+              >
+                {index + 1}
+              </button>
+            ))}
+            <button
+              onClick={() => handlePageChange(currentPage + 1)}
+              className={`text-white px-4 py-2 rounded ${
+                currentPage === totalPages
+                  ? "bg-gray-500 cursor-not-allowed"
+                  : "bg-[#8D5FE3]"
+              }`}
+              disabled={currentPage === totalPages}
+            >
+              Next
+            </button>
+          </div>
+        )}
       </div>
     </>
   );
