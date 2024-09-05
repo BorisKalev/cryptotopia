@@ -12,6 +12,7 @@ const Coin = () => {
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(0);
   const navigate = useNavigate();
+
   useEffect(() => {
     const fetchCoinData = async () => {
       try {
@@ -29,7 +30,6 @@ const Coin = () => {
 
     const fetchChartData = async () => {
       try {
-        // Fetch Bitcoin price data for the last 24 hours
         const response = await fetch(
           `https://api.coingecko.com/api/v3/coins/${coinName}/market_chart?vs_currency=usd&days=1`
         );
