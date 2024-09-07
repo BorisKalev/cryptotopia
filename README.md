@@ -31,11 +31,4 @@ Cryptopia is a web application that allows users to search and browse various cr
 
 Crypto Explorer uses the CoinGecko API to retrieve detailed data on different cryptocurrencies, including price, market cap, volume, and price changes. You can learn more about the CoinGecko API by visiting their official [documentation](https://www.coingecko.com/en/api).
 
-## Contribution Guidelines
 
-We welcome contributions! Feel free to fork this repository, open issues, or submit pull requests. Contributions help make the app better for everyone. Here’s how to contribute:
-
-1. **Fork the Repository**
-2. **Create a New Branch:** 
-   ```bash
-   git checkout -b your-feature-branch
