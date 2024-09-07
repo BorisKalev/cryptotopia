@@ -10,16 +10,6 @@ Cryptopia is a web application that allows users to search and browse various cr
 - **Responsive Design:** The app is designed to work seamlessly on both desktop and mobile devices.
 - **Clean UI:** Modern and user-friendly interface designed to enhance the browsing experience.
 
-## Screenshots
-
-### Homepage
-
-![Homepage](./screenshots/homepage.png)
-
-### Coin Detail Page
-
-![Coin Detail Page](./screenshots/coin_detail.png)
-
 ## Technologies Used
 
 - **React:** A JavaScript library for building user interfaces.
